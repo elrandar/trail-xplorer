@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TrailXplorer</string>
+    <string name="activation_button_text">Start tracking</string>
+    <string name="stop_tracking_text">Stop tracking</string>
+    <string name="elapsed_time"> </string>
+    <string name="title_location_permission">Enable location</string>
+    <string name="message_location_permission">We need you to enable location for this feature to be used</string>
+    <string name="ok">Enable</string>
+    <string name="averageVelocity">averageVelocity</string>
+    <string name="minAltitude">minAltitude</string>
+    <string name="maxAltitude">maxAltitude</string>
+    <string name="totalTime">totalTime</string>
+    <string name="totalDistance">totalDistance</string>
+    <string name="totalTimeTxt">Total time elapsed:</string>
+    <string name="totalDistanceTxt">Total distance travelled:</string>
+    <string name="minAltitudeTxt">Minimum altitude:</string>
+    <string name="maxAltitudeTxt">Maximum altitude:</string>
+    <string name="averageVelocityTxt">Average Velocity:</string>
+</resources>
