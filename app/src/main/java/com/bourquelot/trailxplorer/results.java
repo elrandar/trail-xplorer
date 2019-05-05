@@ -1,6 +1,7 @@
 package com.bourquelot.trailxplorer;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class results extends AppCompatActivity {
 
+    graphView graphView;
     public TextView tv1;
     public TextView tv2;
     public TextView tv3;
@@ -47,6 +49,8 @@ public class results extends AppCompatActivity {
         tv3.setText(df.format(averageSpeed) + " m/s");
         tv4.setText(df.format(maximumAltitude) + " m");
         tv5.setText(df.format(minimumAltitude) + " m");
+
+        graphView = findViewById(R.id.graphView);
     }
 
     @Override

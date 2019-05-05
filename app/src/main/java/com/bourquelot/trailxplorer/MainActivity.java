@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         started = false;
         startbutton = findViewById(R.id.startbutton);
         cmTimer = findViewById(R.id.elapsedtimetext);
+        cmTimer.setBase(SystemClock.elapsedRealtime());
         startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
