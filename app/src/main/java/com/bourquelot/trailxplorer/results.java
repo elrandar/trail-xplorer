@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class results extends AppCompatActivity {
@@ -39,11 +40,13 @@ public class results extends AppCompatActivity {
         averageSpeed = getAverageSpeed();
         getAltitudes();
 
-        tv1.setText(String.valueOf(timeTaken));
-        tv2.setText(String.valueOf(totalDistance));
-        tv3.setText(String.valueOf(averageSpeed));
-        tv4.setText(String.valueOf(maximumAltitude));
-        tv5.setText(String.valueOf(minimumAltitude));
+        DecimalFormat df = new DecimalFormat("######.#");
+
+        tv1.setText(df.format(timeTaken) + " s");
+        tv2.setText(df.format(totalDistance) + " m");
+        tv3.setText(df.format(averageSpeed) + " m/s");
+        tv4.setText(df.format(maximumAltitude) + " m");
+        tv5.setText(df.format(minimumAltitude) + " m");
     }
 
     @Override
