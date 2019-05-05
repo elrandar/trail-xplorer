@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectFile(){
+        //TODO Check if external storage is accessible
         final Intent i = new Intent(this, results.class);
         FileChooser fc = new FileChooser(this).setFileListener(new FileChooser.FileSelectedListener() {
             @Override
