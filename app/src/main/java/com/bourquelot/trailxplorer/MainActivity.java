@@ -65,7 +65,11 @@ public class MainActivity extends AppCompatActivity {
         });
         initializeLocationListener();
         GPSdir = initializeGpsDirectory();
-        gpxParser.parse(Environment.getExternalStorageDirectory().getAbsolutePath() + "/GPSTracks/2019-05-05T17:20:27.gpx");
+
+        //tests
+        gpxParser.parse(Environment.getExternalStorageDirectory().getAbsolutePath() + "/GPSTracks/2019-05-05T20:15:28Z.gpx");
+        Intent i = new Intent(this, results.class);
+        startActivity(i);
     }
 
     private void switchToResults(){
