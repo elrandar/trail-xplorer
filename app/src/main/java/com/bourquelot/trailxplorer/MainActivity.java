@@ -1,6 +1,7 @@
 package com.bourquelot.trailxplorer;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,12 +42,20 @@ public class MainActivity extends AppCompatActivity {
     public String current_file_name;
     public File GPSdir;
     private gpxWriter GPX;
+    private File importFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         started = false;
+        Button importButton = findViewById(R.id.importButton);
+        importButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectFile();
+            }
+        });
         startbutton = findViewById(R.id.startbutton);
         cmTimer = findViewById(R.id.elapsedtimetext);
         cmTimer.setBase(SystemClock.elapsedRealtime());
@@ -65,11 +74,18 @@ public class MainActivity extends AppCompatActivity {
         });
         initializeLocationListener();
         GPSdir = initializeGpsDirectory();
+    }
 
-        //tests
-        gpxParser.parse(Environment.getExternalStorageDirectory().getAbsolutePath() + "/GPSTracks/2019-05-05T20:15:28Z.gpx");
-        Intent i = new Intent(this, results.class);
-        startActivity(i);
+    private void selectFile(){
+        final Intent i = new Intent(this, results.class);
+        new FileChooser(this).setFileListener(new FileChooser.FileSelectedListener() {
+            @Override
+            public void fileSelected(final File file) {
+                gpxParser.parse(file.getAbsolutePath());
+
+                startActivity(i);
+            }
+        }).showDialog();
     }
 
     private void switchToResults(){

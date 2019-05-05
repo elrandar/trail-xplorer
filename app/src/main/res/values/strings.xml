@@ -16,4 +16,5 @@
     <string name="minAltitudeTxt">Minimum altitude:</string>
     <string name="maxAltitudeTxt">Maximum altitude:</string>
     <string name="averageVelocityTxt">Average Velocity:</string>
+    <string name="importButton">Import a GPX file</string>
 </resources>

@@ -74,7 +74,6 @@ public class results extends AppCompatActivity {
         float sum = 0f;
         for (int i = 0; i < lArray.size() - 1; i++) {
             float distance = lArray.get(i).distanceTo(lArray.get(i+1));
-            Log.d("DISTANCE", String.valueOf(distance));
             sum += distance;
         }
         return sum;
