@@ -3,7 +3,6 @@ package com.bourquelot.trailxplorer;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
@@ -15,7 +14,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
 
-public class FileChooser {
+class FileChooser {
     private static final String PARENT_DIR = "..";
 
     private final Activity activity;
@@ -24,23 +23,23 @@ public class FileChooser {
     private File currentPath;
 
     // filter on file extension
-    private String extension = null;
-    public void setExtension(String extension) {
-        this.extension = (extension == null) ? null :
-                extension.toLowerCase();
-    }
+    private String extension = ".gpx";
+//    void setExtension(String extension) {
+//        this.extension = (extension == null) ? null :
+//                extension.toLowerCase();
+//    }
 
     // file selection event handling
     public interface FileSelectedListener {
         void fileSelected(File file);
     }
-    public FileChooser setFileListener(FileSelectedListener fileListener) {
+    FileChooser setFileListener(FileSelectedListener fileListener) {
         this.fileListener = fileListener;
         return this;
     }
     private FileSelectedListener fileListener;
 
-    public FileChooser(Activity activity) {
+    FileChooser(Activity activity) {
         this.activity = activity;
         dialog = new Dialog(activity);
         list = new ListView(activity);
@@ -59,11 +58,11 @@ public class FileChooser {
             }
         });
         dialog.setContentView(list);
-        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         refresh(Environment.getExternalStorageDirectory());
     }
 
-    public void showDialog() {
+    void showDialog() {
         dialog.show();
     }
 
@@ -98,7 +97,7 @@ public class FileChooser {
             // convert to an array
             int i = 0;
             String[] fileList;
-            if (path.getParentFile() == null) {
+            if (path.getParentFile() == null || !path.getParentFile().canRead()) {
                 fileList = new String[dirs.length + files.length];
             } else {
                 fileList = new String[dirs.length + files.length + 1];

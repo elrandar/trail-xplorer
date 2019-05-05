@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        fc.setExtension(".gpx");
         fc.showDialog();
     }
 
