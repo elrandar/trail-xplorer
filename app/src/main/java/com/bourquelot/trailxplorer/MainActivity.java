@@ -78,14 +78,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectFile(){
         final Intent i = new Intent(this, results.class);
-        new FileChooser(this).setFileListener(new FileChooser.FileSelectedListener() {
+        FileChooser fc = new FileChooser(this).setFileListener(new FileChooser.FileSelectedListener() {
             @Override
             public void fileSelected(final File file) {
                 gpxParser.parse(file.getAbsolutePath());
 
                 startActivity(i);
             }
-        }).showDialog();
+        });
+        fc.setExtension(".gpx");
+        fc.showDialog();
     }
 
     private void switchToResults(){
