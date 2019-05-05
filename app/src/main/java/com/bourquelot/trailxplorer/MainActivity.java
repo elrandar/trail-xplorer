@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         });
         initializeLocationListener();
         GPSdir = initializeGpsDirectory();
+        gpxParser.parse(Environment.getExternalStorageDirectory().getAbsolutePath() + "/GPSTracks/2019-05-05T17:20:27.gpx");
     }
 
     private void switchToResults(){
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
         //defines the current file name to be the time
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US);
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
         current_file_name = df.format(c);
         //prints the filename for debugging purposes
