@@ -17,4 +17,5 @@
     <string name="maxAltitudeTxt">Maximum altitude:</string>
     <string name="averageVelocityTxt">Average Velocity:</string>
     <string name="importButton">Import a GPX file</string>
+    <string name="graphTitle">Graph of Speed (Km/h):</string>
 </resources>

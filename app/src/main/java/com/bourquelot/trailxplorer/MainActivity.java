@@ -33,6 +33,7 @@ import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_MESSAGE = "com.bourquelot.trailxplorer.MESSAGE";
     private boolean started;
     private Button startbutton;
     private Chronometer cmTimer;
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     public String current_file_name;
     public File GPSdir;
     private gpxWriter GPX;
-    private File importFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        Intent i = getIntent();
+        if(i != null){
+            String toastMsg = i.getStringExtra(EXTRA_MESSAGE);
+            Toast toast = Toast.makeText(this, toastMsg, Toast.LENGTH_LONG);
+            toast.show();
+        }
+
+
         initializeLocationListener();
         GPSdir = initializeGpsDirectory();
     }
@@ -91,8 +99,7 @@ public class MainActivity extends AppCompatActivity {
             fc.showDialog();
         }
         else{
-            Toast toast = new Toast(this);
-            toast.setText("The external storage is not available");
+            Toast toast = Toast.makeText(this, "The external storage is not available", Toast.LENGTH_LONG);
             toast.show();
         }
     }
@@ -101,9 +108,18 @@ public class MainActivity extends AppCompatActivity {
         //Stops requesting updates from the locationManager
         locationManager.removeUpdates(locationListener);
         GPX.finishWriting();
-        //Switches to the results activity
-        Intent i = new Intent(this, results.class);
-        startActivity(i);
+        if (arraygpx.getlocationArray().size() <= 2) {
+            Intent i = new Intent(this, MainActivity.class);
+            String toastText = "Too little points, try again";
+            i.putExtra(EXTRA_MESSAGE, toastText);
+            startActivity(i);
+        }
+        else {
+            //Switches to the results activity
+            Intent i = new Intent(this, results.class);
+            startActivity(i);
+        }
+
     }
 
     private void startRecording(){
