@@ -113,11 +113,11 @@ public class graphView extends View {
             compSpeedArr.add(Math.round(larray.get(i).distanceTo(larray.get(i-1))/(larray.get(i).getElapsedRealtimeNanos() - larray.get(i - 1).getElapsedRealtimeNanos())* 1_000_000_000.0f *3.6f));
         }
 //        Log.d("str", timeArr.toString());
-//        Log.d("str", compSpeedArr.toString());
+        Log.d("str", compSpeedArr.toString());
     }
     private void drawGraduations(Canvas canvas){
         int x = pointList.get(pointList.size() - 1).x + Math.round(padding*0.15f);
-        int[] graduations = new int[]{5, 10, 15, 20, 25, 30, 35, 40};
+        int[] graduations = new int[]{5, 10, 15, 20, 25};
         for(int value: graduations){
             int y = Math.round(zeroY - value*1f * pxPerUnit);
             String format = NumberFormat.getInstance().format(value);

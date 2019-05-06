@@ -46,20 +46,6 @@ public class gpxParser {
                     long nanos = date.getTime()*1000000;
                     location.setElapsedRealtimeNanos(nanos);
                     arraygpx.addlocationArray(location);
-                    System.out.println("lat : "
-                            + eElement.getAttribute("lat"));
-                    System.out.println("lon : "
-                            + eElement.getAttribute("lon"));
-                    System.out.println("Elevation : "
-                            + eElement
-                            .getElementsByTagName("ele")
-                            .item(0)
-                            .getTextContent());
-                    System.out.println("Time : "
-                            + eElement
-                            .getElementsByTagName("time")
-                            .item(0)
-                            .getTextContent());
                 }
             }
         } catch (Exception e) {

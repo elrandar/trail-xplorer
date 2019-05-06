@@ -67,9 +67,7 @@ class FileChooser {
     }
 
 
-    /**
-     * Sort, filter and display the files for the given path.
-     */
+
     private void refresh(File path) {
         this.currentPath = path;
         if (path.exists()) {

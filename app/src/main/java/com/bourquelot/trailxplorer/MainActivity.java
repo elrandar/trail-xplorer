@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Intent i = getIntent();
-        if(i != null){
+        if(i.getStringExtra(EXTRA_MESSAGE) != null){
             String toastMsg = i.getStringExtra(EXTRA_MESSAGE);
             Toast toast = Toast.makeText(this, toastMsg, Toast.LENGTH_LONG);
             toast.show();

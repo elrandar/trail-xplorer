@@ -9,7 +9,10 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class results extends AppCompatActivity {
 
@@ -38,13 +41,18 @@ public class results extends AppCompatActivity {
         lArray = arraygpx.getlocationArray();
 
         timeTaken = getTimeTaken();
+        Date d = new Date(Math.round(timeTaken) * 1000L);
+        SimpleDateFormat dff = new SimpleDateFormat("HH:mm:ss");
+        dff.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String time = dff.format(d);
+
         totalDistance = getTotalDistance();
         averageSpeed = getAverageSpeed();
         getAltitudes();
 
         DecimalFormat df = new DecimalFormat("######.#");
 
-        tv1.setText(df.format(timeTaken) + " s");
+        tv1.setText(time);
         tv2.setText(df.format(totalDistance) + " m");
         tv3.setText(df.format(averageSpeed) + " m/s");
         tv4.setText(df.format(maximumAltitude) + " m");
