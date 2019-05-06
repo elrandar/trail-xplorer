@@ -83,20 +83,22 @@ public class graphView extends View {
                 min = f;
             }
         }
-//        Log.d("max", String.valueOf(max));
-//        Log.d("min", String.valueOf(min));
-//        Log.d("max height", String.valueOf(getHeight()));
-        pxPerUnit = (getHeight()) / (max - min);
-//        Log.d("pxPerUnit", String.valueOf(pxPerUnit));
+
+        if (max == min){
+            pxPerUnit = (getHeight()) / 100;
+        }
+        else {
+            pxPerUnit = (getHeight()) / (max - min);
+        }
         zeroY = Math.round(max * pxPerUnit + paddingTop);
-//        Log.d("ZERO", String.valueOf(zeroY));
+
         int step = (getWidth() - 2 * padding)/(compSpeedArr.size() - 1);
         for (int i = 0; i < compSpeedArr.size(); i++) {
             int x = step * i + padding;
             int y = zeroY - Math.round(compSpeedArr.get(i)) * pxPerUnit;
             pointList.add(new Point(x, y));
         }
-//        Log.d("lol", pointList.toString());
+
     }
     private void generateArrays(){
         List<Location> larray = arraygpx.getlocationArray();
