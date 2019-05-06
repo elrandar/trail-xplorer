@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -77,17 +78,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectFile(){
-        //TODO Check if external storage is accessible
-        final Intent i = new Intent(this, results.class);
-        FileChooser fc = new FileChooser(this).setFileListener(new FileChooser.FileSelectedListener() {
-            @Override
-            public void fileSelected(final File file) {
-                gpxParser.parse(file.getAbsolutePath());
+        if(isExternalStorageWritable()){
+            final Intent i = new Intent(this, results.class);
+            FileChooser fc = new FileChooser(this).setFileListener(new FileChooser.FileSelectedListener() {
+                @Override
+                public void fileSelected(final File file) {
+                    gpxParser.parse(file.getAbsolutePath());
 
-                startActivity(i);
-            }
-        });
-        fc.showDialog();
+                    startActivity(i);
+                }
+            });
+            fc.showDialog();
+        }
+        else{
+            Toast toast = new Toast(this);
+            toast.setText("The external storage is not available");
+            toast.show();
+        }
     }
 
     private void switchToResults(){
